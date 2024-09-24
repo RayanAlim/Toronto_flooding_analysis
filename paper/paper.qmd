@@ -1,0 +1,78 @@
+---
+title: "From Storms to Sewers: Basement Flooding Patterns in Toronto"
+subtitle: "An Analysis of basement flooding and sewage service requests across Toronto Wards from 2005 to 2023."
+author: 
+  - Rayan Awad Alim
+thanks: "Code and data are available at: https://github.com/RayanAlim/Toronto_flooding_analysis"
+date: today
+date-format: long
+abstract: "This analysis examines basement flooding and sewage service requests across Toronto wards from 2005 to 2023. The study identifies long-term trends and highlights ward-level variations in service requests, providing a clearer picture of which areas are most affected by these issues. The findings emphasize the need for targeted urban planning and infrastructure improvements to mitigate future risks. This work offers valuable insights for city planners and policymakers to better allocate resources and prevent future flooding, in order to enhance urban resilience and prepardness."
+
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(opendatatoronto)
+library(ggplot2)
+library(dplyr)
+```
+
+
+# Introduction
+
+Basement flooding and sewage-related issues are persistent problems in urban areas, often exacerbated by aging infrastructure, extreme weather events, and rapid urbanization. These issues have significant impacts on homeowners, businesses, and city resources, making them a crucial focus for urban planning and infrastructure development. As cities like Toronto experience increased precipitation and storm events, understanding the patterns and trends of these service requests offers valuable insights for mitigation and future planning.
+
+This paper focuses on analyzing service requests related to basement flooding and sewage backups in Toronto from 2005 to 2023. The data, provided by the City of Toronto, covers all 25 wards across the city and provides an overview of where and when these incidents have occurred. By exploring both temporal and geographic trends, this study identifies areas that may be particularly vulnerable to flooding and infrastructure failures.
+
+The current gap in knowledge lies in understanding how service requests have evolved over time and which areas are most impacted. While citywide trends are important, ward-level insights can help city planners target resources more effectively. This paper attempts to fill this gap by conducting a detailed ward-level analysis to help guide infrastructure investments and policy decisions.
+
+Key findings suggest that certain wards experience a disproportionately high number of flooding incidents, with trends showing an increase in service requests over time. These results underscore the importance of targeted infrastructure improvements and proactive planning in areas most at risk.
+
+
+# Data {#sec-data}
+
+The dataset used in this analysis consists of service requests related to basement flooding and sewage backups across Toronto’s wards from 2005 to 2023. The data was sourced from the City of Toronto's Open Data Portal, specifically focused on requests stemming from blocked drains, sewer backups, and surface flooding due to storm events. @opendatatoronto  Each observation in the dataset corresponds to a specific service request made by Toronto residents, categorized by year and ward.
+
+The primary variables in the dataset include:
+
+- Ward: Identifies the ward number in which the service request was made.
+- Year: The year the request was filed, covering 2005 through 2023.
+- Service Requests: The number of service requests filed per year in each ward.
+
+The data is analysed using R language @citeR. Where the data was cleaned to remove irrelevant rows and columns, including metadata and non-informative entries. For analysis, the dataset was transformed from wide format (years as columns) to long format, where each row corresponds to a specific ward-year combination. This allows for a more straightforward analysis of trends over time and comparison across wards.
+
+Although similar datasets could have been used, such as datasets on rainfall, soil drainage, or infrastructure quality, the focus on service requests provides a direct measure of citizen-reported issues. Which aligns with the goals of the analysis of identifying areas for tageted govermental intervention. 
+
+# Discussion
+
+## Increasing service requests
+
+Summary statistics show us that service requests have generally increased over time, with certain years (corresponding to major storm events) seeing spikes in the number of reported issues.
+
+## Ward-Level Service Disparities
+
+Certain wards consistently report higher numbers of service requests than others. This disparity may stem from differences in the age of infrastructure, geographic vulnerability (e.g., lower-lying areas), and ward-specific maintenance practices. Wards 13 and 9, for example, repetedly over the years reported higher numbers of requests, potentially due to their older infrastructure and proximity to large bodies of water. Understanding these factors is essential for allocating city resources effectively.
+
+## Need for Forecasting Future Flood Risks
+
+Using predictive models based on historical data, city planners can estimate future service demands and prioritize upgrades to vulnerable infrastructure. If current trends continue, specific wards may face unsustainable levels of flooding incidents. Investing in modernized drainage systems, proactive maintenance, and flood prevention initiatives can reduce future service requests and enhance the city’s resilience against climate change.
+
+## Weaknesses and next steps
+
+While this analysis provides valuable insights, there are several limitations. Mainly is that it does not incorporate external factors such as rainfall patterns, population growth, or changes in urbanization, which could further explain the trends in service requests. Future studies should integrate these variables for a more comprehensive understanding of the underlying causes of flooding incidents. Additionally, more granular data—such as monthly service requests—could allow for better identification of seasonal trends. 
+
+Next steps are to make models that incorporate both infrastructure data and climate projections.
+
+\newpage
+
+
+# References
+
+
