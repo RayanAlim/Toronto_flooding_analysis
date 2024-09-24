@@ -3,7 +3,7 @@ title: "From Storms to Sewers: Basement Flooding Patterns in Toronto"
 subtitle: "An Analysis of basement flooding and sewage service requests across Toronto Wards from 2005 to 2023."
 author: 
   - Rayan Awad Alim
-thanks: "Code and data are available at: https://github.com/RayanAlim/Toronto_flooding_analysis"
+thanks: "Code and data are available at: [RayanAlim/Toronto_flooding_analysis](https://github.com/RayanAlim/Toronto_flooding_analysis)"
 date: today
 date-format: long
 abstract: "This analysis examines basement flooding and sewage service requests across Toronto wards from 2005 to 2023. The study identifies long-term trends and highlights ward-level variations in service requests, providing a clearer picture of which areas are most affected by these issues. The findings emphasize the need for targeted urban planning and infrastructure improvements to mitigate future risks. This work offers valuable insights for city planners and policymakers to better allocate resources and prevent future flooding, in order to enhance urban resilience and prepardness."
@@ -48,13 +48,47 @@ The primary variables in the dataset include:
 
 The data is analysed using R language @citeR. Where the data was cleaned to remove irrelevant rows and columns, including metadata and non-informative entries. For analysis, the dataset was transformed from wide format (years as columns) to long format, where each row corresponds to a specific ward-year combination. This allows for a more straightforward analysis of trends over time and comparison across wards.
 
-Although similar datasets could have been used, such as datasets on rainfall, soil drainage, or infrastructure quality, the focus on service requests provides a direct measure of citizen-reported issues. Which aligns with the goals of the analysis of identifying areas for tageted govermental intervention. 
+Although similar datasets could have been used, such as datasets on rainfall, soil drainage, or infrastructure quality, the focus on service requests provides a direct measure of citizen-reported issues. Which aligns with the goals of the analysis of identifying areas for targeted govermental intervention. 
+
+Overall trend of the number of requests can be seen at (@fig-trend-over-time).
+
+```{r}
+#| label: fig-trend-over-time
+#| fig-cap: "Trend of basement flooding and sewage service requests in Toronto from 2005 to 2023. The plot highlights significant fluctuations, with notable spikes in certain years corresponding to major storm events."
+#| echo: false
+#| warning: false
+
+data <- read_csv(here::here("data", "raw_data", "simulated_flood_data.csv"))
+
+# total number of service requests per year
+yearly_trend <- data %>%
+  group_by(Year) %>%
+  summarise(Total_Requests = sum(Service_Requests, na.rm = TRUE))
+
+ggplot(yearly_trend,
+       aes(x = Year,
+           y = Total_Requests)) +
+  geom_line(color = "royalblue4", size = 1) +  
+  geom_point(color = "tomato3", size = 2) +   
+  labs(title = "Total Basement Flooding Service Requests \n (2005-2023)",
+       x = "Year",
+       y = "Number of Service Requests") +
+  scale_x_continuous(breaks = seq(2005, 2023, by = 1)) +
+  theme_minimal(base_size = 14) + 
+  theme(
+    plot.title = element_text(face = "bold", size = 13),
+    plot.subtitle = element_text(size = 12),
+    axis.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()  
+  )
+```
+
 
 # Discussion
 
 ## Increasing service requests
 
-Summary statistics show us that service requests have generally increased over time, with certain years (corresponding to major storm events) seeing spikes in the number of reported issues.
+Service requests have fluctuated over time, with certain years corresponding to major storm events seeing spikes in the number of reported issues.
 
 ## Ward-Level Service Disparities
 
