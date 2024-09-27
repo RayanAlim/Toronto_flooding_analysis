@@ -9,7 +9,7 @@ This analysis looks at basement flooding and sewage service requests across Toro
 The repo is structured as:
 
 -   `data/raw_data` contains the raw data as obtained from Toronto Open Data Portal.
--   `data/analysis_data` contains the cleaned dataset that was constructed.
+-   `data/analysis_data` contains the cleaned datasets that were cleaned and used in the analysis.
 -   `other` contains relevant literature, details about LLM chat interactions, and sketches.
 -   `paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. 
 -   `scripts` contains the R scripts used to simulate, download and clean data which include:
@@ -22,7 +22,7 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-No aspects of the code were written with the help of the auto-complete tool or LLMs.
+No aspects of the code were written with the help of the auto-complete tool or LLMs. The "Reformat code" tool in Rstudio was used for code styling.
 
 ## Requirements
 - R (version 4.0 or higher)
